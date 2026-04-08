@@ -7,12 +7,48 @@
 // ============================================================
 
 import { useEffect } from 'react';
-import { I18nManager, View } from 'react-native';
+import { I18nManager, Platform } from 'react-native';
 import { Stack, useRouter, useSegments } from 'expo-router';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import * as Notifications from 'expo-notifications';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useAuthStore } from '../store/auth';
+import { usersApi } from '../services/api';
+
+// Configure how notifications appear when the app is in the foreground
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+});
+
+async function registerForPushNotifications(): Promise<void> {
+  if (Platform.OS === 'android') {
+    await Notifications.setNotificationChannelAsync('default', {
+      name: 'default',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+    });
+  }
+
+  const { status: existingStatus } = await Notifications.getPermissionsAsync();
+  let finalStatus = existingStatus;
+
+  if (existingStatus !== 'granted') {
+    const { status } = await Notifications.requestPermissionsAsync();
+    finalStatus = status;
+  }
+
+  if (finalStatus !== 'granted') return; // User declined — no token to register
+
+  const tokenData = await Notifications.getExpoPushTokenAsync();
+  await usersApi.registerPushToken(tokenData.data).catch(() => {
+    // Non-fatal — push will just be unavailable until next app open
+  });
+}
 
 // Force RTL for Arabic-first experience
 I18nManager.allowRTL(true);
@@ -52,6 +88,7 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
 
 export default function RootLayout() {
   const initialize = useAuthStore((s) => s.initialize);
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
 
   const [fontsLoaded] = useFonts({
     'Cairo-Regular': require('../../assets/fonts/Cairo-Regular.ttf'),
@@ -66,6 +103,12 @@ export default function RootLayout() {
   useEffect(() => {
     initialize();
   }, []);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      registerForPushNotifications();
+    }
+  }, [isAuthenticated]);
 
   useEffect(() => {
     if (fontsLoaded) {

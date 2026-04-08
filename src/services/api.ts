@@ -86,6 +86,8 @@ export const usersApi = {
   getMe: () => api.get('/users/me'),
   updateMe: (data: { full_name?: string; language_pref?: string }) =>
     api.patch('/users/me', data),
+  registerPushToken: (expo_push_token: string) =>
+    api.post('/users/me/push-token', { expo_push_token }),
 };
 
 // userApi alias (used in payment screen for card-on-file check)
