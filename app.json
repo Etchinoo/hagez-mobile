@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "Super Reservation",
-    "slug": "super-reservation",
+    "name": "Hagez",
+    "slug": "hagez",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logos/hagez_logo_transparent.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logos/hagez_logo_transparent.png",
       "resizeMode": "contain",
       "backgroundColor": "#0F2044"
     },
@@ -23,7 +23,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logos/hagez_logo_transparent.png",
         "backgroundColor": "#0F2044"
       },
       "package": "eg.reservr.consumer",
@@ -38,7 +38,7 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logos/fav_icon.png"
     },
     "plugins": [
       "expo-router",
@@ -46,7 +46,7 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/notification-icon.png",
+          "icon": "./assets/logos/hagez_logo_transparent.png",
           "color": "#0F2044",
           "sounds": []
         }
