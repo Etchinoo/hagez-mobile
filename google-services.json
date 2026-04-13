@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "323829556168",
+    "project_id": "hagez-9552a",
+    "storage_bucket": "hagez-9552a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323829556168:android:49e79d6319ba43b0bcd6fd",
+        "android_client_info": {
+          "package_name": "eg.reservr.consumer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5O2kKJ3t72CwegP_2Wn0yEZTzA9n3y88"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

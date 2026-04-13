@@ -8,19 +8,19 @@
       "developmentClient": true,
       "distribution": "internal",
       "env": {
-        "EXPO_PUBLIC_API_BASE_URL": "http://localhost:3000/v1"
+        "EXPO_PUBLIC_API_BASE_URL": "https://api.hagez.app/v1"
       }
     },
     "preview": {
       "distribution": "internal",
       "env": {
-        "EXPO_PUBLIC_API_BASE_URL": "https://api-staging.reservr.eg/v1"
+        "EXPO_PUBLIC_API_BASE_URL": "https://api.hagez.app/v1"
       }
     },
     "production": {
       "autoIncrement": true,
       "env": {
-        "EXPO_PUBLIC_API_BASE_URL": "https://api.reservr.eg/v1"
+        "EXPO_PUBLIC_API_BASE_URL": "https://api.hagez.app/v1"
       }
     }
   },

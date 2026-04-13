@@ -1,6 +1,7 @@
 // ============================================================
 // SUPER RESERVATION PLATFORM — Auth Store (Zustand)
 // Persists auth state. Manages login/logout lifecycle.
+// Firebase Phone Auth + Google Sign-In.
 // ============================================================
 
 import { create } from 'zustand';
@@ -20,8 +21,7 @@ interface AuthState {
   isLoading: boolean;
   isAuthenticated: boolean;
 
-  // Actions
-  loginWithOtp: (phone: string, otp: string) => Promise<void>;
+  loginWithFirebase: (idToken: string, full_name?: string) => Promise<void>;
   loginWithSocial: (provider: 'apple' | 'google', token: string) => Promise<void>;
   logout: () => Promise<void>;
   setUser: (user: AuthUser) => void;
@@ -39,23 +39,19 @@ export const useAuthStore = create<AuthState>((set) => ({
       set({ isLoading: false, isAuthenticated: false });
       return;
     }
-    // Token exists — fetch full user profile to hydrate store
     try {
       const res = await usersApi.getMe();
       set({ user: res.data, isLoading: false, isAuthenticated: true });
     } catch {
-      // Token expired or invalid — clear and redirect to login
       await tokenStorage.clear();
       set({ user: null, isLoading: false, isAuthenticated: false });
     }
   },
 
-  loginWithOtp: async (phone: string, otp: string) => {
-    const res = await authApi.verifyOtp(phone, otp);
+  loginWithFirebase: async (idToken: string, full_name?: string) => {
+    const res = await authApi.verifyFirebaseToken(idToken, full_name);
     const { access_token, refresh_token, user } = res.data;
     await tokenStorage.setTokens(access_token, refresh_token);
-    // user returned from /auth/otp/verify may have full_name = phone on first login.
-    // Fetch full profile to ensure store is up to date.
     try {
       const profileRes = await usersApi.getMe();
       set({ user: profileRes.data, isAuthenticated: true });

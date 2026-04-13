@@ -14,6 +14,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import * as Notifications from 'expo-notifications';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useAuthStore } from '../store/auth';
+import { useLanguageStore } from '../store/language';
 import { usersApi } from '../services/api';
 
 // Configure how notifications appear when the app is in the foreground
@@ -89,19 +90,21 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
 export default function RootLayout() {
   const initialize = useAuthStore((s) => s.initialize);
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+  const initLang = useLanguageStore((s) => s.initialize);
 
   const [fontsLoaded] = useFonts({
-    'Cairo-Regular': require('../../assets/fonts/Cairo-Regular.ttf'),
-    'Cairo-Medium': require('../../assets/fonts/Cairo-Medium.ttf'),
-    'Cairo-SemiBold': require('../../assets/fonts/Cairo-SemiBold.ttf'),
-    'Cairo-Bold': require('../../assets/fonts/Cairo-Bold.ttf'),
-    'Inter-Regular': require('../../assets/fonts/Inter-Regular.ttf'),
-    'Inter-Medium': require('../../assets/fonts/Inter-Medium.ttf'),
-    'Inter-SemiBold': require('../../assets/fonts/Inter-SemiBold.ttf'),
+    'Cairo-Regular': require('../../assets/fonts/Cairo/static/Cairo-Regular.ttf'),
+    'Cairo-Medium': require('../../assets/fonts/Cairo/static/Cairo-Medium.ttf'),
+    'Cairo-SemiBold': require('../../assets/fonts/Cairo/static/Cairo-SemiBold.ttf'),
+    'Cairo-Bold': require('../../assets/fonts/Cairo/static/Cairo-Bold.ttf'),
+    'Inter-Regular': require('../../assets/fonts/Inter/static/Inter_18pt-Regular.ttf'),
+    'Inter-Medium': require('../../assets/fonts/Inter/static/Inter_18pt-Medium.ttf'),
+    'Inter-SemiBold': require('../../assets/fonts/Inter/static/Inter_18pt-SemiBold.ttf'),
   });
 
   useEffect(() => {
     initialize();
+    initLang();
   }, []);
 
   useEffect(() => {

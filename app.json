@@ -2,20 +2,24 @@
   "expo": {
     "name": "Hagez",
     "slug": "hagez",
+    "scheme": "hagez",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logos/hagez_logo_transparent.png",
+    "icon": "./assets/logos/fav_icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/logos/hagez_logo_transparent.png",
+      "image": "./assets/logos/fav_icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#0F2044"
+      "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "eg.reservr.consumer",
       "buildNumber": "1",
+      "googleServicesFile": "./GoogleService-Info.plist",
       "infoPlist": {
         "NSCameraUsageDescription": "Used to upload business photos.",
         "NSPhotoLibraryUsageDescription": "Used to select profile and booking photos."
@@ -23,11 +27,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logos/hagez_logo_transparent.png",
-        "backgroundColor": "#0F2044"
+        "foregroundImage": "./assets/logos/fav_icon.png",
+        "backgroundColor": "#F5F5F5"
       },
       "package": "eg.reservr.consumer",
       "versionCode": 1,
+      "googleServicesFile": "./google-services.json",
       "permissions": [
         "CAMERA",
         "READ_EXTERNAL_STORAGE",
@@ -46,11 +51,15 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/logos/hagez_logo_transparent.png",
+          "icon": "./assets/logos/fav_icon.png",
           "color": "#0F2044",
           "sounds": []
         }
-      ]
+      ],
+      "expo-font",
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth",
+      "@react-native-google-signin/google-signin"
     ],
     "newArchEnabled": true,
     "experiments": {
@@ -61,9 +70,9 @@
         "origin": false
       },
       "eas": {
-        "projectId": "replace-with-your-eas-project-id"
+        "projectId": "fa6fd7a4-ffe4-47be-8669-16cef1c5f3a6"
       }
     },
-    "owner": "reservr"
+    "owner": "etchinoo"
   }
 }
