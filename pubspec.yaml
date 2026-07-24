@@ -1,0 +1,101 @@
+name: hagez
+description: "Hagez consumer app — book restaurants, salons, sports courts, gaming cafes, and car washes"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # RTL/Arabic Material widget localizations (delegates used in main.dart)
+  flutter_localizations:
+    sdk: flutter
+
+  # Networking — mirrors the axios client used by the dashboard
+  dio: ^5.7.0
+
+  # Secure token storage (Keychain on iOS, Keystore on Android) — never
+  # localStorage-equivalent for auth tokens.
+  flutter_secure_storage: ^9.2.2
+
+  # State management
+  flutter_riverpod: ^2.6.1
+
+  # Routing
+  go_router: ^14.6.2
+
+  # Arabic/RTL number & date formatting
+  intl: ^0.20.2
+
+  # Simple non-sensitive local prefs (language toggle, onboarding-seen flag)
+  shared_preferences: ^2.3.3
+
+  # Remote business/venue photos
+  cached_network_image: ^3.4.1
+
+  # Google Sign-In (mirrors the Expo app's social auth)
+  google_sign_in: ^6.2.2
+
+  # Firebase (Phone Auth OTP — matches the API's /auth/firebase/verify route)
+  firebase_core: ^3.8.0
+  firebase_auth: ^5.3.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/logos/
+
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo/static/Cairo-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Cairo/static/Cairo-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Cairo/static/Cairo-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Cairo/static/Cairo-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Cairo/static/Cairo-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Cairo/static/Cairo-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Cairo/static/Cairo-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Cairo/static/Cairo-Black.ttf
+          weight: 900
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter/static/Inter_18pt-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Inter/static/Inter_18pt-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Inter/static/Inter_18pt-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Inter/static/Inter_18pt-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Inter/static/Inter_18pt-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter/static/Inter_18pt-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter/static/Inter_18pt-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Inter/static/Inter_18pt-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Inter/static/Inter_18pt-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Inter/static/Inter_18pt-Italic.ttf
+          weight: 400
+          style: italic
