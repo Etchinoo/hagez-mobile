@@ -100,6 +100,8 @@ This section replaces the old file's "Completed Work" list. Everything below was
 6. **Session restore uses a placeholder user object** on app relaunch (`lib/core/auth/auth_state.dart` has a `TODO`) rather than re-fetching the real profile from the API.
 7. **Home category chips and "book now" don't pass filter/slot context** to the next screen yet (tapping a category just opens a blank Search; tapping "book now" doesn't preselect the slot you tapped).
 8. **Google Sign-In / Firebase Phone Auth are not wired up** in the Flutter app (the API supports them; the old Expo app had partial work on this that was removed with the rest of the Expo code).
+9. **No onboarding flow.** A 3-slide swipeable intro (skippable, dot indicators, "next"/"start now" CTA) existed as a UX prototype in an old orphaned Expo scaffold (`apps/mobile/`, deleted 2026-07-25 — see git history of this file for the review that preceded deletion) and was never rebuilt. Worth adding before/after Login as a first-launch-only screen.
+10. **Search filter UX could be better.** Current Search screen filters are inline chips with no result-count feedback. The same deleted prototype had a nicer pattern worth copying: a bottom-sheet filter modal (rating/distance/category) that shows a live "Show N results" count on the Apply button as filters are toggled, before the user commits. Note: distance and price filters aren't supported by the live search API yet either — if reproducing this pattern, only wire up the dimensions the API actually supports (category, district, min_rating) unless the API gains price/distance filtering too.
 
 ### ❌ Not started
 - Loyalty screen, reviews UI, push notifications, deep links, any Phase-2-category-specific booking UX beyond what's listed above.
